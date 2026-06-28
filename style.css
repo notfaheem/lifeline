@@ -1,7 +1,7 @@
 *{
     margin:0;
     box-sizing: border-box;
-    font-family: "Lilita One", sans-serif;
+    font-family: sans-serif;
     color: #fff;
 }
 .flex{
@@ -85,7 +85,6 @@ body{
 }
 
 
-
 .btn-container{
     gap:10px;
 }
@@ -93,4 +92,96 @@ body{
 
 .btn2{
     margin:30px;
+}
+
+
+#bg-pp{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 2;
+    width:100%;
+    height: 100%;
+    background: #0000006c;
+    transition: 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+.edit-pp{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 20px;
+    background: #0000006c;
+    backdrop-filter: blur(10px);
+    border:2px solid #ccc;
+    z-index: 3;
+    transition: 0.5s;
+    opacity: 0;
+    pointer-events: none;
+}
+.pp-head-container{
+    justify-content: space-between;
+    font-size: 25px;
+    margin: 0 0 20px 0;
+}
+.pp-head{
+    font-family: "Bagel Fat One", system-ui;
+}
+.close-pp{
+    cursor: pointer;
+}
+label,input{
+    display: block;
+}
+input, select{
+    margin: 0 0 10px 0;
+    border-radius: 15px;
+    border:none;
+    outline:none;
+    height: 40px;
+    width: 300px;
+    padding:5px 10px;
+    color: #000;
+}
+input[type="radio"]{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.moods-container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(1,1fr);
+    margin:0 0 10px 0;
+}
+.e-label{
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    width:50%;
+    aspect-ratio: 1 / 1;
+    margin:0 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (max-width:768px) {
+    .hero-sec{
+        padding:0;
+    }
+    .h{
+        scale: 0.8;
+    }
+    .para1{
+        width: 90%;
+    }
+    .btn-container{
+        scale:0.8;
+    }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,38 +10,75 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Lilita+One&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    
+
+
+    <!-- Main Section -->
     <section class="flex-c hero-sec">
         <h2 class="h">Where Did Your Time Go ?</h2>
-        <p class="para1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi <br>culpa alias ipsam, aliquid nam aliquam officia voluptate hic quas</p>
+        <p class="para1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi <br>culpa alias ipsam, aliquid
+            nam aliquam officia voluptate hic quas</p>
         <div class="flex bar" id="bar">
             <div class="barich"></div>
             <div class="barich"></div>
             <div class="barich"></div>
         </div>
         <div class="flex btn-container">
-            <button class="flex btn">
+            <button class="flex btn" id="addbtn">
                 <img class="icon1" src="public/add.png">
                 <div class="btntext">Add Section</div>
             </button>
-            <button class="flex btn">
+            <button class="flex btn" id="editbtn">
                 <img class="icon1" src="public/edit.png">
                 <div class="btntext">Edit Section</div>
             </button>
-            <button class="flex btn">
+            <button class="flex btn" id="delbtn">
                 <img class="icon1" src="public/delete.png">
                 <div class="btntext">Delete Section</div>
             </button>
         </div>
-
 
         <button class="flex btn btn2">
             <img class="icon1" src="public/analyse.png">
             <div class="btntext">Analysis</div>
         </button>
     </section>
-    
+
+
+    <!-- Popup -->
+    <div id="bg-pp"></div>
+    <div class="edit-pp" id="edit-pp">
+        <div class="flex pp-head-container">
+            <div class="pp-head">Edit Task</div>
+            <div class="close-pp" id="close-pp">X</div>
+        </div>
+        <form>
+            <label>Activity Name</label>
+            <input type="text" required placeholder="Eg: Study">
+            <label>Time from</label>
+            <input type="time">
+            <label>Time to</label>
+            <input type="time">
+            <label>Mood</label>
+
+            <div class="moods-container">
+                <input type="radio" name="mood" id="m-fire" value="3">
+                <input type="radio" name="mood" id="m-good" value="2">
+                <input type="radio" name="mood" id="m-neu" value="1">
+                <input type="radio" name="mood" id="m-bad" value="0">
+                <label for="m-fire" class="e-label">🔥</label>
+                <label for="m-good" class="e-label">👍</label>
+                <label for="m-neu" class="e-label">😐</label>
+                <label for="m-bad" class="e-label">👎</label>
+            </div>
+
+            <input type="submit" class="btn btn-pp" id="btn-pp">
+        </form>
+    </div>
+
+
     <script src="script.js"></script>
 </body>
+
 </html>
