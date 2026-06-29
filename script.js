@@ -2,6 +2,8 @@
 const popup = document.getElementById("edit-pp");
 const popupBg = document.getElementById("bg-pp");
 function openPopup(){
+    activityStart.value = lastTime;
+    activityEnd.min = lastTime;
     popupBg.style.opacity = 1;
     popup.style.opacity = 1;
     popupBg.style.pointerEvents = "all";
@@ -66,10 +68,28 @@ barichs.forEach(element => {
 });
 
 // data managing
-
+const barichColors = [
+  "#00043F",
+  "#001A38",
+  "#003131",
+  "#173518",
+  "#2F3A00",
+  "#3C2D00",
+  "#461E0A",
+  "#410F1E",
+  "#370532",
+  "#28003C",
+  "#0F0041",
+  "#000F41",
+  "#00233C",
+  "#002D28",
+  "#1E320A"
+];
+const bar = document.getElementById("bar")
 const activityName = document.getElementById("activity-name");
 const activityStart = document.getElementById("activity-start");
 const activityEnd = document.getElementById("activity-end");
+let lastTime = "00:00";
 
 let datas = [];
 function submit(){
@@ -79,17 +99,25 @@ function submit(){
         start: activityStart.value,
         end: activityEnd.value,
         mood: document.querySelector('input[name="mood"]:checked').value,
-        color: "rgb(0, 4, 63)"
+        color: datas.length <= 15 ? barichColors[datas.length] : "rgb(0, 4, 63)" 
     }
     datas.push(newTask);
     console.log(datas);
+
     let lastTask = datas[datas.length -1];
     let width = getDuration(lastTask.start , lastTask.end);
     console.log(width)
     width = width / 14.4;
     console.log(width + "%")
-    
 
+    let newBarich = document.createElement("div")
+    newBarich.className = "barich";
+    newBarich.style.width = width + "%";
+    newBarich.style.background = lastTask.color;
+    bar.append(newBarich)
+
+    lastTime = lastTask.end;
+    console.log("HHHHHHHOOOLLLEAAA" + lastTime )
 
     closePopup()
 }
