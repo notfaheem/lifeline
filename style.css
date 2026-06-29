@@ -64,24 +64,40 @@ body{
 .bar{
     width: 75%;
     height: 100px;
-    background: #000;
+    background: #0000006c;
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     margin:20px;
     overflow: hidden;
+    justify-content: flex-start;
 }
 .barich{
     height: 100%;
     width: 100%;
-    background: #fff;
+    background: #002722;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: inset #fff 0 0 0 0;
+}
+.barich:hover{
+    box-shadow:
+        0 0 15px #ffffff55,
+        inset 0 0 20px #ffffff40;
+}
+.barich:active{
+    filter:saturate(2);
 }
 .barich:nth-of-type(1){
     background: rgb(0, 4, 63);
+    width: 90%;
 }
 .barich:nth-of-type(2){
     background: rgb(0, 49, 49);
+    width: 0%;
 }
 .barich:nth-of-type(3){
     background: rgb(47, 58, 0);
+    width: 0%;
 }
 
 
@@ -116,7 +132,7 @@ body{
     border-radius: 20px;
     background: #0000006c;
     backdrop-filter: blur(10px);
-    border:2px solid #ccc;
+    border:1px solid #ccc;
     z-index: 3;
     transition: 0.5s;
     opacity: 0;

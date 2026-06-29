@@ -14,18 +14,13 @@ function closePopup(){
     popup.style.pointerEvents = "none";
 }
 const addBtn = document.getElementById("addbtn");
-const editBtn = document.getElementById("editbtn");
 addBtn.addEventListener("click", ()=>{
-    openPopup()
-})
-editBtn.addEventListener("click", ()=>{
     openPopup()
 })
 const closeBtn = document.getElementById("close-pp");
 closeBtn.addEventListener("click", ()=>{
     closePopup();
 })
-openPopup()
 const moodFire = document.getElementById("m-fire")
 const moodGood = document.getElementById("m-good")
 const moodNeu = document.getElementById("m-neu")
@@ -62,3 +57,55 @@ labelBad.addEventListener("click",()=>{
 //     const checkedRadio = document.querySelector('input[name="mood"]:checked');
 //     console.log(checkedRadio);
 // }, 1000);
+
+
+//abbr
+const barichs = document.querySelectorAll(".barich")
+barichs.forEach(element => {
+    element.setAttribute("title", "Click to edit")
+});
+
+// data managing
+
+const activityName = document.getElementById("activity-name");
+const activityStart = document.getElementById("activity-start");
+const activityEnd = document.getElementById("activity-end");
+
+let datas = [];
+function submit(){
+    let newTask = {
+        id: datas.length + 1,
+        name: activityName.value,
+        start: activityStart.value,
+        end: activityEnd.value,
+        mood: document.querySelector('input[name="mood"]:checked').value,
+        color: "rgb(0, 4, 63)"
+    }
+    datas.push(newTask);
+    console.log(datas);
+    let lastTask = datas[datas.length -1];
+    let width = getDuration(lastTask.start , lastTask.end);
+    console.log(width)
+    width = width / 14.4;
+    console.log(width + "%")
+    
+
+
+    closePopup()
+}
+
+function getDuration(start, end){
+    let [startH, startM] = start.split(":").map(Number);
+    let [endH, endM] = end.split(":").map(Number);
+    let startMinutes = startH * 60 + startM;
+    let endMinutes = endH * 60 + endM;
+    let diff = endMinutes - startMinutes;
+    return diff;
+}
+
+const taskForm = document.getElementById("task-form");
+taskForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    submit()
+})
+// object

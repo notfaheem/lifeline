@@ -29,19 +29,11 @@
                 <img class="icon1" src="public/add.png">
                 <div class="btntext">Add Section</div>
             </button>
-            <button class="flex btn" id="editbtn">
-                <img class="icon1" src="public/edit.png">
-                <div class="btntext">Edit Section</div>
-            </button>
-            <button class="flex btn" id="delbtn">
-                <img class="icon1" src="public/delete.png">
-                <div class="btntext">Delete Section</div>
-            </button>
         </div>
 
         <button class="flex btn btn2">
             <img class="icon1" src="public/analyse.png">
-            <div class="btntext">Analysis</div>
+            <div class="btntext">Analysis My Day</div>
         </button>
     </section>
 
@@ -53,13 +45,13 @@
             <div class="pp-head">Edit Task</div>
             <div class="close-pp" id="close-pp">X</div>
         </div>
-        <form>
+        <form id="task-form">
             <label>Activity Name</label>
-            <input type="text" required placeholder="Eg: Study">
+            <input type="text" required placeholder="Eg: Study" id="activity-name">
             <label>Time from</label>
-            <input type="time">
+            <input type="time" value="00:00" readonly id="activity-start">
             <label>Time to</label>
-            <input type="time">
+            <input type="time"  id="activity-end">
             <label>Mood</label>
 
             <div class="moods-container">
