@@ -53,7 +53,7 @@ labelBad.addEventListener("click",()=>{
     labelBad.style.border = "1px solid #fff";
     labelFire.style.border = "";
     labelNeu.style.border = "";
-    labelNeu.style.border = "";
+    labelGood.style.border = "";
 });
 // setInterval(() => {
 //     const checkedRadio = document.querySelector('input[name="mood"]:checked');
@@ -145,4 +145,43 @@ taskForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     submit()
 })
-// object
+//error popup for not choosing mood                                 // prblm to fix - its calling it even when textboxes arent filled so make it only when mood isnt selected
+const ppBtn = document.getElementById("btn-pp")
+ppBtn.addEventListener("click", ()=>{
+    const mood = document.querySelector('input[name="mood"]:checked');
+    if (!mood){
+        normalpp("Error", "Please choose a mood...")
+    }
+})
+
+//normal-popup
+const nppBg = document.getElementById("npp-bg");
+const npp = document.getElementById("normal-pp");
+const nppH = document.getElementById("npp-head");
+const nppP = document.getElementById("para2");
+const nppClose = document.getElementById("npp-btn");
+const nppBtn = document.getElementById("npp-btn");
+function normalpp(title, para, btn){
+    nppBg.style.opacity = 1;
+    npp.style.pointerEvents = "all";
+    npp.style.opacity = 1;
+    nppH.innerText = title;
+    nppP.innerText = para;
+    if(btn != undefined){
+        nppBtn.innerText = btn;
+    }
+}
+nppBtn.addEventListener("click", ()=>{
+    npp.style.opacity = 0;
+    nppBg.style.opacity = 0;
+    npp.style.pointerEvents = "none";
+})
+nppClose.addEventListener("click", ()=>{
+    npp.style.opacity = 0;
+    nppBg.style.opacity = 0;
+    npp.style.pointerEvents = "none";
+})
+
+setInterval(()=>{
+    console.log(activityName.value)
+},1000)
