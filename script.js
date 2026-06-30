@@ -61,12 +61,6 @@ labelBad.addEventListener("click",()=>{
 // }, 1000);
 
 
-//abbr
-const barichs = document.querySelectorAll(".barich")
-barichs.forEach(element => {
-    element.setAttribute("title", "Click to edit")
-});
-
 // data managing
 const barichColors = [
   "#00043F",
@@ -114,10 +108,25 @@ function submit(){
     newBarich.className = "barich";
     newBarich.style.width = width + "%";
     newBarich.style.background = lastTask.color;
+    if(lastTask.id == 1){
+        newBarich.style.borderTopLeftRadius = "20px"
+        newBarich.style.borderBottomLeftRadius = "20px"
+    }
+    let emoji;
+    if(lastTask.mood == 0){
+        emoji = "👎";
+    }else if(lastTask.mood == 1){
+        emoji = "😐";
+    }else if(lastTask.mood == 2){
+        emoji = "👍";
+    }else if(lastTask.mood == 3){
+        emoji = "🔥";
+    }
+    newBarich.style.setProperty("--after-content", `"${lastTask.name} \\A ${emoji}"`);
     bar.append(newBarich)
 
     lastTime = lastTask.end;
-    console.log("HHHHHHHOOOLLLEAAA" + lastTime )
+    console.log("HH" + lastTime )
 
     closePopup()
 }
