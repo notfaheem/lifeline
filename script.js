@@ -1,3 +1,16 @@
+//startup
+const analyseBtn = document.getElementById("analyse-btn")
+analyseBtn.style.opacity = 0.3;
+let analyseBtnToggle = false;
+analyseBtn.addEventListener("click", ()=>{
+    if(!analyseBtnToggle){
+        normalpp("Error", "Please fill the above bar with your day as sections...")
+    }else{
+        normalpp("Za Goat", "LM or CR")
+    }
+})
+
+
 //popup
 const popup = document.getElementById("edit-pp");
 const popupBg = document.getElementById("bg-pp");
@@ -86,6 +99,7 @@ const activityEnd = document.getElementById("activity-end");
 let lastTime = "00:00";
 
 let datas = [];
+let absWidth = 0;
 function submit(){
     let newTask = {
         id: datas.length + 1,
@@ -100,6 +114,7 @@ function submit(){
 
     let lastTask = datas[datas.length -1];
     let width = getDuration(lastTask.start , lastTask.end);
+    absWidth = absWidth + width;
     width = width / 14.4;
 
     let newBarich = document.createElement("div")
@@ -124,6 +139,12 @@ function submit(){
     bar.append(newBarich)
 
     lastTime = lastTask.end;
+    if(absWidth == 1439){
+        newBarich.style.borderTopRightRadius = "20px";
+        newBarich.style.borderBottomRightRadius = "20px";
+        analyseBtnToggle = true;
+        analyseBtn.style.opacity = 1;
+    }
 
     closePopup()
 }
@@ -160,10 +181,11 @@ const nppBg = document.getElementById("npp-bg");
 const npp = document.getElementById("normal-pp");
 const nppH = document.getElementById("npp-head");
 const nppP = document.getElementById("para2");
-const nppClose = document.getElementById("npp-btn");
+const nppClose = document.getElementById("close-normal-pp");
 const nppBtn = document.getElementById("npp-btn");
 function normalpp(title, para, btn){
     nppBg.style.opacity = 1;
+    nppBg.style.pointerEvents = "all";
     npp.style.pointerEvents = "all";
     npp.style.opacity = 1;
     nppH.innerText = title;
@@ -176,14 +198,11 @@ nppBtn.addEventListener("click", ()=>{
     npp.style.opacity = 0;
     nppBg.style.opacity = 0;
     npp.style.pointerEvents = "none";
+    nppBg.style.pointerEvents = "none";
 })
 nppClose.addEventListener("click", ()=>{
     npp.style.opacity = 0;
     nppBg.style.opacity = 0;
     npp.style.pointerEvents = "none";
+    nppBg.style.pointerEvents = "none";
 })
-
-setInterval(()=>{
-    console.log(activityName.value)
-    console.log(lastTime)
-},1000)
