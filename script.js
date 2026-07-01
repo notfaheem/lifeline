@@ -100,9 +100,7 @@ function submit(){
 
     let lastTask = datas[datas.length -1];
     let width = getDuration(lastTask.start , lastTask.end);
-    console.log(width)
     width = width / 14.4;
-    console.log(width + "%")
 
     let newBarich = document.createElement("div")
     newBarich.className = "barich";
@@ -126,7 +124,6 @@ function submit(){
     bar.append(newBarich)
 
     lastTime = lastTask.end;
-    console.log("HH" + lastTime )
 
     closePopup()
 }
@@ -150,6 +147,8 @@ ppBtn.addEventListener("click", (e)=>{
     }
     else if (!mood){
         normalpp("Error", "Please choose a mood...")
+    }else if (!activityEnd.checkValidity()) {
+        normalpp("Error", `End time must be after ${lastTime}.`);
     }
     else{
         submit()
@@ -186,4 +185,5 @@ nppClose.addEventListener("click", ()=>{
 
 setInterval(()=>{
     console.log(activityName.value)
+    console.log(lastTime)
 },1000)
