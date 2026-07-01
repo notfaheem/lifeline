@@ -137,7 +137,7 @@ body{
     pointer-events: none;
 }
 .edit-pp{
-    position: absolute;
+    position: fixed;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
@@ -201,7 +201,7 @@ input[type="radio"]{
 
 
 #normal-pp{
-    position: absolute;
+    position: fixed;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
@@ -237,6 +237,38 @@ input[type="radio"]{
     transition: 0.5s;
     opacity: 0;
     pointer-events: none;
+}
+
+
+.g-sec{
+    width: 100%;
+    height: 150vh;
+    background: linear-gradient(-45deg, #000222,#160025, #1d001b, #1d0013 );
+    background-size: 400% 400%;
+    animation: bg1 10s infinite;
+    padding:100px 8%;
+    gap:50px;
+}
+.g-container{
+    background:#00000023;
+    backdrop-filter: blur(10px);
+    width: 80%;
+    border-radius: 20px;
+    border:1px solid #cccccc2d;
+    padding:20px 0;
+}
+.g-head{
+    font-size: 20px;
+    font-family: "Bagel Fat One", system-ui;
+    letter-spacing: 5px;
+}
+#mood-graph{
+    height:300px;
+    position:relative;
+}
+.g-container div canvas{
+    width: 100% !important;
+    height: 100% !important;
 }
 
 

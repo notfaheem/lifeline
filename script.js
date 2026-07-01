@@ -6,7 +6,7 @@ analyseBtn.addEventListener("click", ()=>{
     if(!analyseBtnToggle){
         normalpp("Error", "Please fill the above bar with your day as sections...")
     }else{
-        normalpp("Za Goat", "LM or CR")
+        graphs()
     }
 })
 
@@ -110,12 +110,17 @@ function submit(){
         color: datas.length <= 15 ? barichColors[datas.length] : "rgb(0, 4, 63)" 
     }
     datas.push(newTask);
-    console.log(datas);
 
     let lastTask = datas[datas.length -1];
     let width = getDuration(lastTask.start , lastTask.end);
     absWidth = absWidth + width;
     width = width / 14.4;
+    if(width>99.9){
+        width = 100;
+    }
+    lastTask.width = width;
+    console.log(datas);
+
 
     let newBarich = document.createElement("div")
     newBarich.className = "barich";
@@ -139,6 +144,7 @@ function submit(){
     bar.append(newBarich)
 
     lastTime = lastTask.end;
+
     if(absWidth == 1439){
         newBarich.style.borderTopRightRadius = "20px";
         newBarich.style.borderBottomRightRadius = "20px";
@@ -175,6 +181,48 @@ ppBtn.addEventListener("click", (e)=>{
         submit()
     }
 })
+
+
+//graphs
+function graphs(){
+    
+    let labels = [];
+    let gValues = [];
+    for (let i = 0; i < datas.length; i++) {
+        labels.push(datas[i].name);
+        gValues.push(datas[i].width);
+
+    }
+
+    const ctx = document.getElementById("myChart");
+    new Chart(ctx, {
+
+        type: "pie",
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                data: gValues,
+
+                backgroundColor: barichColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    position: "right"
+                }
+            }
+        }
+
+    });
+}
+
+
 
 //normal-popup
 const nppBg = document.getElementById("npp-bg");
