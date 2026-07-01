@@ -140,17 +140,19 @@ function getDuration(start, end){
     return diff;
 }
 
-const taskForm = document.getElementById("task-form");
-taskForm.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    submit()
-})
-//error popup for not choosing mood                                 // prblm to fix - its calling it even when textboxes arent filled so make it only when mood isnt selected
+
 const ppBtn = document.getElementById("btn-pp")
-ppBtn.addEventListener("click", ()=>{
+ppBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
     const mood = document.querySelector('input[name="mood"]:checked');
-    if (!mood){
+    if(activityName.value.trim() === "" || activityEnd.value === ""){
+        normalpp("Error", "Please fill all the fields...")
+    }
+    else if (!mood){
         normalpp("Error", "Please choose a mood...")
+    }
+    else{
+        submit()
     }
 })
 
