@@ -262,7 +262,7 @@ input[type="radio"]{
     font-family: "Bagel Fat One", system-ui;
     letter-spacing: 5px;
 }
-#mood-graph{
+.graph{
     height:300px;
     position:relative;
 }

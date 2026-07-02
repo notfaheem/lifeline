@@ -191,7 +191,6 @@ function graphs(){
     for (let i = 0; i < datas.length; i++) {
         labels.push(datas[i].name);
         gValues.push(datas[i].width);
-
     }
 
     const ctx = document.getElementById("myChart");
@@ -201,6 +200,45 @@ function graphs(){
 
         data: {
             labels: labels,
+
+            datasets: [{
+                data: gValues,
+
+                backgroundColor: barichColors
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    position: "right"
+                }
+            }
+        }
+
+    });
+
+
+
+    let moodGraphLabels = [];
+    for (i=0; i < 25; i++){
+        moodGraphLabels.push(i)
+    }
+
+    let moodValues = [];
+    for (let i = 0; i < datas.length; i++) {
+        moodValues.push(datas[i].mood);
+    }
+    
+    const moodGraph = document.getElementById("moodChart");
+    new Chart(moodGraph, {
+
+        type: "line",
+
+        data: {
+            labels: moodGraphLabels,
 
             datasets: [{
                 data: gValues,
