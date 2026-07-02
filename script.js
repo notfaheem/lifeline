@@ -183,6 +183,30 @@ ppBtn.addEventListener("click", (e)=>{
 })
 
 
+
+datas = [{
+    id:1,
+    name: "Sleep",
+    start: "00:00",
+    end: "9:00",
+    mood: 1,
+    width: 30
+},{
+    id:2,
+    name: "School",
+    start: "09:00",
+    end: "16:00",
+    mood: 0,
+    width: 50
+},{
+    id:4,
+    name: "Study",
+    start: "16:00",
+    end: "23:29",
+    mood: 1,
+    width: 20
+}]
+graphs()
 //graphs
 function graphs(){
     
@@ -223,15 +247,23 @@ function graphs(){
 
 
     let moodGraphLabels = [];
-    for (i=0; i < 25; i++){
+    for (i=0; i <= 1440; i++){
         moodGraphLabels.push(i)
     }
 
-    let moodValues = [];
-    for (let i = 0; i < datas.length; i++) {
-        moodValues.push(datas[i].mood);
+    let moodValues = new Array(1440).fill(null);
+    moodValues[0] = datas[0].mood;
+    let oldTemp = 0;
+    let newTemp = 0;
+    console.log(moodValues)
+    for(i=0;i < datas.length; i++){
+        let duration = getDuration(datas[i].start, datas[i].end);
+        newTemp = newTemp + duration;
+        moodValues[newTemp] = datas[i].mood;
+        oldTemp = newTemp;
     }
-    
+    console.log(moodValues)
+
     const moodGraph = document.getElementById("moodChart");
     new Chart(moodGraph, {
 
@@ -241,9 +273,12 @@ function graphs(){
             labels: moodGraphLabels,
 
             datasets: [{
-                data: gValues,
-
-                backgroundColor: barichColors
+                data: moodValues,
+                borderColor: "blue",
+                backgroundColor: "lightblue",
+                borderWidth: 1,
+                tension: 0.4,
+                spanGaps: true
             }]
         },
         options: {
@@ -252,7 +287,7 @@ function graphs(){
 
             plugins: {
                 legend: {
-                    position: "right"
+                    display: false
                 }
             }
         }
